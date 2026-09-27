@@ -14,6 +14,10 @@ body = """
 {% endfor %}
 """
 trim = true
+postprocessors = [
+    { pattern = '\n{3,}', replace = "\n\n" },
+    { pattern = '\s+$', replace = "" },
+]
 
 [git]
 conventional_commits = true
