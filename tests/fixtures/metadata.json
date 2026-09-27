@@ -1,0 +1,17 @@
+{
+  "upstream": {
+    "repository": "https://github.com/nats-io/jwt",
+    "commit": "82017236da50e4a0173091105d82d46228b8dccf",
+    "module_version": "v2.8.2"
+  },
+  "generator": "go/generate.go",
+  "tokens": "tokens.json",
+  "seed_bytes": {
+    "operator": 1,
+    "account": 2,
+    "user": 3,
+    "server": 4,
+    "length": 32
+  },
+  "reproducibility": "Raw NKey seed bytes and payload values are fixed. Upstream Encode refreshes iat and jti, so regenerated token strings can differ; checked-in static tokens are the compatibility fixtures."
+}
