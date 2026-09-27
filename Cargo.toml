@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
 description = "NATS JWT implementation using NKeys"
+repository = "https://github.com/hijriyan/nats-token"
+readme = "README.md"
 
 [dependencies]
 base64 = "0.23.1"

@@ -18,6 +18,9 @@ This project does not claim complete method-for-method or numerical test parity 
 
 ## Installation
 
+Maintainers: see [the release guide](RELEASE.md) for changelog generation and
+automatic crates.io/GitHub releases.
+
 Add the crate from crates.io:
 
 ```bash

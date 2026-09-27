@@ -1,0 +1,33 @@
+[changelog]
+header = "# Changelog\n\nAll notable changes to nats-token are documented here.\n"
+body = """
+{% if version %}
+## {{ version }}
+{% else %}
+## Unreleased
+{% endif %}
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group }}
+{% for commit in commits %}
+- {% if commit.breaking %}**BREAKING:** {% endif %}{% if commit.scope %}**{{ commit.scope }}:** {% endif %}{{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/hijriyan/nats-token/commit/{{ commit.id }}))
+{% endfor %}
+{% endfor %}
+"""
+trim = true
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+protect_breaking_commits = true
+commit_parsers = [
+    { message = '^chore\(release\)', skip = true },
+    { message = '^feat', group = "Features" },
+    { message = '^fix', group = "Fixes" },
+    { message = '^perf', group = "Performance" },
+    { message = '^docs', group = "Documentation" },
+    { message = '^chore\(deps\)', group = "Dependencies" },
+    { message = '.*', group = "Other changes" },
+]
+filter_commits = false
+tag_pattern = '^v[0-9]+\.[0-9]+\.[0-9]+.*$'
+sort_commits = "oldest"
