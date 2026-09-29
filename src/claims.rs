@@ -3,7 +3,6 @@
 //! Constructors, encoding, semantic validation, and trust checks are separate operations.
 
 use std::collections::BTreeMap;
-use std::time::{SystemTime, UNIX_EPOCH};
 
 use base64::engine::general_purpose::URL_SAFE_NO_PAD;
 use base64::write::EncoderStringWriter;
@@ -848,7 +847,7 @@ impl AccountClaims {
 
     /// Record an inclusive revocation cutoff at the current time; older cutoffs do not replace newer ones. The change remains local until the claim is published.
     pub fn revoke(&mut self, public_key: &str) {
-        self.revoke_at(public_key, std::time::SystemTime::now());
+        self.revoke_at(public_key, std::time::SystemTime::UNIX_EPOCH + std::time::Duration::from_secs(crate::time::now_secs() as u64));
     }
 
     /// Record an inclusive revocation cutoff at the supplied time; older cutoffs do not replace newer ones. The change remains local until the claim is published.
@@ -1330,10 +1329,7 @@ pub fn decode(token: &str) -> Result<DecodedClaims> {
 
 /// Read whole Unix seconds, using zero when the system clock precedes the Unix epoch.
 fn unix_time() -> i64 {
-    SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap_or_default()
-        .as_secs() as i64
+    crate::time::now_secs()
 }
 
 #[cfg(test)]

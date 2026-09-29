@@ -3,7 +3,6 @@
 //! Seed helpers return private key material; parsing decorated JWT text alone does not verify it.
 
 use nkeys::KeyPair;
-use std::time::{SystemTime, UNIX_EPOCH};
 
 use crate::claims::{is_account, is_user};
 use crate::{decode, DecodedClaims, NjError, Result, UserClaims};
@@ -30,12 +29,7 @@ pub fn issue_user_jwt(
         .ok_or_else(|| NjError::Nkeys("user key required".into()))?;
     claim.set_scoped(true);
     if expiration_duration != 0 {
-        let now: i64 = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .map_err(|error| NjError::InvalidToken(error.to_string()))?
-            .as_secs()
-            .try_into()
-            .map_err(|_| NjError::InvalidToken("current time overflows i64".into()))?;
+        let now: i64 = crate::time::now_secs();
         claim.claims.expires = now
             .checked_add(expiration_duration)
             .ok_or_else(|| NjError::InvalidToken("expiration overflows i64".into()))?;

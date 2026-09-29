@@ -14,9 +14,15 @@ data-encoding = "2.11.1"
 nkeys = "0.4.5"
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
-sha2 = { version = "0.10.9", features = ["asm"] }
 thiserror = "2.0.21"
 url = "2.5.8"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+sha2 = { version = "0.10.9", features = ["asm"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+sha2 = { version = "0.10.9" }
+js-sys = "0.3"
 
 [lib]
 path = "src/lib.rs"

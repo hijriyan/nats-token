@@ -23,6 +23,7 @@
 //! ```
 
 mod authorization;
+mod time;
 mod claims;
 mod creds;
 mod error;
