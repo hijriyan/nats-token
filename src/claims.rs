@@ -847,7 +847,11 @@ impl AccountClaims {
 
     /// Record an inclusive revocation cutoff at the current time; older cutoffs do not replace newer ones. The change remains local until the claim is published.
     pub fn revoke(&mut self, public_key: &str) {
-        self.revoke_at(public_key, std::time::SystemTime::UNIX_EPOCH + std::time::Duration::from_secs(crate::time::now_secs() as u64));
+        self.revoke_at(
+            public_key,
+            std::time::SystemTime::UNIX_EPOCH
+                + std::time::Duration::from_secs(crate::time::now_secs() as u64),
+        );
     }
 
     /// Record an inclusive revocation cutoff at the supplied time; older cutoffs do not replace newer ones. The change remains local until the claim is published.

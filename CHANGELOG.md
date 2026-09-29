@@ -2,6 +2,11 @@
 
 All notable changes to nats-token are documented here.
 
+## v0.2.0
+
+### Features
+
+- **wasm:** add wasm32 target support for time and sha2 ([19e47e4](https://github.com/hijriyan/nats-token/commit/19e47e44272baef0b0ee216b993f0693f904c3ad))
 ## v0.1.0
 
 ### Dependencies

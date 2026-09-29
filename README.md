@@ -6,7 +6,7 @@ The crate models NATS operators, accounts, users, activations, authorization mes
 
 ## Status
 
-- Crate version: `0.1.0`
+- Crate version: `0.2.0`
 - Rust edition: 2021
 - License: Apache-2.0
 - Token support: NATS JWT v2 only
@@ -24,14 +24,14 @@ automatic crates.io/GitHub releases.
 Add the crate from crates.io:
 
 ```bash
-cargo add nats-token@0.1.0
+cargo add nats-token@0.2.0
 ```
 
 Or add the dependency to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-nats-token = "0.1.0"
+nats-token = "0.2.0"
 ```
 
 The package is named `nats-token` and its Rust import is `nats_token`.
